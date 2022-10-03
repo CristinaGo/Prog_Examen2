@@ -1,0 +1,17 @@
+@startuml
+skinparam actorStyle Hollow
+left to right direction
+actor Administrador
+
+rectangle "APP seguimiento vehículos" {
+Administrador --> (registra GPS)
+(registra GPS) ..> (asigna nombre): <<Include>>
+Administrador --> (programa rutas)
+(programa rutas) ..> (fecha/hora salida): <<Include>>
+(programa rutas) ..> (fecha/hora llegada): <<Include>>
+Administrador --> (accede a mapa)
+(accede a mapa) ..> (modificar ruta): <<Extend>>
+(accede a mapa) ..> (limita búsqueda): <<Extend>>
+Administrador --> (solicita porte)
+}
+@enduml

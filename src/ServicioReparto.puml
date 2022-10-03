@@ -1,0 +1,53 @@
+@startuml
+
+title Servicio Reparto
+
+
+class Persona {
+ - String nombre
+ - String teléfono
+ - String dirección
+}
+
+class Mensajero {
+ - String contrato
+ + entregarPaquete(): void
+}
+
+class Cliente{
+ - String DNI
+ + selecionarCliente(): void
+ + introducirDatosPaquete():void
+ + obtenerCódigo(): String
+
+}
+
+
+Persona <|--  Cliente
+Persona <|--  Mensajero
+
+class Oficina {
+ - String nombre
+ - String dirección
+ + asignarMensajero():void
+}
+
+class Paquete {
+ - String código
+ - Estado estado
+ - Mensajero mensajero
+
+}
+Cliente "1" --o "1..*" Oficina: tiene asociada
+(Cliente, Oficina) "1".."1" Paquete
+Mensajero "1" -* "1..*" Oficina: trabaja en
+
+enum Estado {
+EN_OFICINA_ORIGEN
+EN_RUTA
+EN_OFICINA_DESTINO
+EN_REPARTO
+ENTREGADO
+}
+
+@enduml
